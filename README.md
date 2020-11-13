@@ -1,6 +1,6 @@
-# Flightvie
+# Flightvi
 
-## What is Flightvie?
+## What is Flightvi?
 **Project under development**
 
 It connects [droneserver](https://github.com/rc-bellergy/droneserver), displays the live information of the flying drone using mapbox and graph.
