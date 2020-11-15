@@ -24,6 +24,8 @@ map.on("load", function () {
             }
         }
         */
+
+        // update drone's position
         var location = data.drone;
         map.getSource('drone-icon').setData({
             "type": "FeatureCollection",
@@ -36,6 +38,8 @@ map.on("load", function () {
                 }
             }]
         });
+        // Update drone's heading
+        map.setLayoutProperty('drone', 'icon-rotate', location.heading);
 
         // Follow the drone, if the map zoom closely
         if (map.getZoom() > 15) {
@@ -62,8 +66,8 @@ map.on("load", function () {
                         "geometry": {
                             "type": "Point",
                             "coordinates": [114.304060, 22.309058]
-                        }
-                    }]
+                        },
+                    }],
                 }
             });
             map.addLayer({
