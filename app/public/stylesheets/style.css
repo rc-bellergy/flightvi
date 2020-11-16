@@ -6,3 +6,10 @@ body {
 a {
   color: #00B7FF;
 }
+
+.marker {
+  background-image: url('../images/drone.svg');
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+}
