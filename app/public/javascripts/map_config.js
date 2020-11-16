@@ -26,45 +26,42 @@ var homePathLayer = {
     }
 };
 
-var maxAltLayer = {
-    'id': 'max-alt',
-    'type': 'circle',
-    'paint': {
-        'circle-color': '#ff0000',
-        'circle-radius': 5
+var maxAltLabelLayer = {
+    'id': 'max-alt-label',
+    'type': 'symbol',
+    'layout': {
+        'text-field': ['get', 'description'],
+        'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+        'text-radial-offset': 0.5,
+        'text-justify': 'auto',
+        'icon-image': ['concat', ['get', 'icon'], '-15']
     }
-};
+}
 
 var flightPathJSON = {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            'type': 'Feature',
-            'geometry': {
-                'type': 'LineString',
-                'coordinates': []
-            }
-        }
-    ]
+    'type': 'Feature',
+    'geometry': {
+        'type': 'LineString',
+        'coordinates': []
+    }
 };
 
 var homePathJSON = {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            'type': 'Feature',
-            'geometry': {
-                'type': 'LineString',
-                'coordinates': []
-            }
-        }
-    ]
+    'type': 'Feature',
+    'geometry': {
+        'type': 'LineString',
+        'coordinates': []
+    }
 };
 
 var maxAltJSON = {
-    "type": "Feature",
-    "geometry": {
-        "type": "Point",
-        "coordinates": []
+    'type': 'Feature',
+    'properties': {
+        'description': '',
+        'icon': 'campsite'
+    },
+    'geometry': {
+        'type': 'Point',
+        'coordinates': []
     }
-};
+}

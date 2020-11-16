@@ -28,7 +28,7 @@ map.on("load", function () {
         .addTo(map);
 
     // flight path
-    flightPathJSON.features[0].geometry.coordinates.push(drone);
+    flightPathJSON.geometry.coordinates.push(drone);
     map.addSource('flight-path', {
         'type': 'geojson',
         'data': flightPathJSON
@@ -37,7 +37,7 @@ map.on("load", function () {
     map.addLayer(flightPathLayer);
     
     // RTL path
-    homePathJSON.features[0].geometry.coordinates.push(home);
+    homePathJSON.geometry.coordinates.push(home);
     map.addSource('home-path', {
         'type': 'geojson',
         'data': homePathJSON
@@ -46,12 +46,18 @@ map.on("load", function () {
     map.addLayer(homePathLayer);
 
     // Max Alt point
+    // map.addSource('max-alt-point', {
+    //     'type': 'geojson',
+    //     'data': maxAltJSON
+    // });
+    // maxAltLayer.source = 'max-alt-point';
+    // map.addLayer(maxAltLayer);
     map.addSource('max-alt-point', {
         'type': 'geojson',
         'data': maxAltJSON
     });
-    maxAltLayer.source = 'max-alt-point';
-    map.addLayer(maxAltLayer);
+    maxAltLabelLayer.source = 'max-alt-point';
+    map.addLayer(maxAltLabelLayer);
 
     /* Events Handling */
     socket.on('full_rtl_altitude_updated', function (data) {
@@ -64,16 +70,18 @@ map.on("load", function () {
         marker.setRotation(droneHeading);
 
         // draw flight path
-        flightPathJSON.features[0].geometry.coordinates.push(drone);
+        flightPathJSON.geometry.coordinates.push(drone);
         map.getSource('flight-path').setData(flightPathJSON);
 
         // update home path
-        homePathJSON.features[0].geometry.coordinates[1] = drone;
+        homePathJSON.geometry.coordinates[1] = drone;
         map.getSource('home-path').setData(homePathJSON);
 
         // update max alt location
         maxAltJSON.geometry.coordinates = [data.max_alt.lon, data.max_alt.let];
+        maxAltJSON.properties.description = data.max_alt.alt.toFixed(1)+"M";
         map.getSource('max-alt-point').setData(maxAltJSON);
+
 
         // Follow the drone, if the map zoom closely
         if (map.getZoom() > 15) {
