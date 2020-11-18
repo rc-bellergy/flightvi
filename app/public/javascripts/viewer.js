@@ -45,13 +45,7 @@ map.on("load", function () {
     homePathLayer.source = 'home-path';
     map.addLayer(homePathLayer);
 
-    // Max Alt point
-    // map.addSource('max-alt-point', {
-    //     'type': 'geojson',
-    //     'data': maxAltJSON
-    // });
-    // maxAltLayer.source = 'max-alt-point';
-    // map.addLayer(maxAltLayer);
+    // Max alt point
     map.addSource('max-alt-point', {
         'type': 'geojson',
         'data': maxAltJSON
