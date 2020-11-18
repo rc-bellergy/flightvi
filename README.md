@@ -1,8 +1,8 @@
 # Flightvi
 
 ## What is Flightvi?
-It connects [droneserver](https://github.com/rc-bellergy/droneserver), displays the live information of the flying drone using mapbox.
-
+It connects the `droneserver` and displays the real time information of the flying drone using the Mapbox.
+You need to setup your [droneserver](https://github.com/rc-bellergy/droneserver) first.
 
 ## Install
     cd app
